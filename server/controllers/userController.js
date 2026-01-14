@@ -113,12 +113,14 @@ const loginUser = async (req, res) => {
     );
 
     // 5. Set HTTP-only cookie
+  
     res.cookie("accessToken", accessToken, {
-      httpOnly: true,
-      secure: false, // set true in production (HTTPS)
-      sameSite: "strict",
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-    });
+  httpOnly: true,
+  sameSite: "none",
+  secure: true,
+  maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+});
+
 
     // 6. Response (STRICT DOC FORMAT)
     return res.status(200).json({
